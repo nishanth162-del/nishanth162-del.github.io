@@ -5,7 +5,7 @@ body, h1, h2, h3, p, ul, li {
 }
 
 body {
-    font-family: "Comic Sans MS", cursive, sans-serif; 
+    font-family: "Comic Sans MS", cursive, sans-serif;
 }
 
 .container {
@@ -55,10 +55,6 @@ h2 {
 .product {
     border: 1px solid #ccc;
     border-radius: 8px;
-    display: grid;
-    flex-wrap: wrap;
-    justify-content: center;
-    flex-direction: column;
     width: calc(33.33% - 20px); /* Adjust the width based on your preference */
     margin-bottom: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -68,7 +64,6 @@ h2 {
     max-width: 100%;
     height: auto;
     margin-bottom: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Apply box shadow to product images */
 }
 
 footer {
@@ -84,7 +79,11 @@ footer {
     margin-right: 10px; /* Add space between the icon and company name */
 }
 
-/* Additional CSS styles as needed */
+.product-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
 
 .contact-wrapper {
     display: flex;
@@ -105,7 +104,6 @@ footer {
     margin-left: 150px;
 }
 
-/* Social media icons */
 .social-icons {
     position: fixed;
     top: 90%; /* Adjust vertically as needed */
@@ -122,7 +120,7 @@ footer {
     text-decoration: none;
 }
 
-.social-icons a:hover {
+social-icons a:hover {
     color: #2BA3AE; /* Adjust hover color */
 }
 
@@ -131,9 +129,8 @@ footer {
     padding: 50px 0;
 }
 
-#products,
-#contact {
-    background-color: #f0f0f0;
+#products {
+    background-color: #ffffff;
     padding: 50px 0;
 }
 
@@ -143,9 +140,107 @@ footer {
     padding: 50px 0;
 }
 
+#contact {
+    background-color: #f0f0f0;
+    padding: 50px 0;
+}
+
+h1, h2, h3 {
+    font-family: 'Roboto', sans-serif;
+    /* Add additional styling as needed */
+}
+
+p {
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    /* Add additional styling as needed */
+}
+
+button {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    background-color: #f3fffe; /* Change background color on hover */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow on hover */
+}
+
+.product img:hover {
+    transform: scale(1.15); /* Scale up image on hover */
+    opacity: 1 ; /* Reduce opacity on hover */
+}
+
+.fade-in {
+    opacity: 0;
+    animation: fadeIn ease-in 1.0s forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.social-icons a img {
+    background-color: transparent; /* Ensure the background is transparent */
+}
+
 #directors {
-    background-color: #f9f9f9; /* Background color for directors section */
-    padding: 50px 0; /* Add padding */
+    background-color: #f0f0f0;
+    padding: 50px 0;
+}
+
+.director {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.director img {
+    border-radius: 50%; /* Round the corners of the director images */
+    width: 150px;
+    height: 150px;
+    object-fit: cover; /* Ensure the image fills the container */
+    margin-bottom: 20px;
+}
+
+.director h3 {
+    margin-bottom: 10px;
+}
+
+.director p {
+    color: #666;
+}
+
+.products {
+    background-color: #f0f0f0;
+}
+
+.social-icons a {
+    display: inline-block;
+    margin-right: 10px; /* Adjust spacing between icons */
+    text-decoration: none;
+}
+
+social-icons a img {
+    width: 50px; /* Adjust width and height of the icons */
+    height: 50px;
+    border-radius: 50%; /* Make the icons round */
+    overflow: hidden; /* Ensure the icon stays within the rounded shape */
+}
+
+.social-icons a:last-child {
+    margin-right: 0; /* Remove margin from the last icon */
+}
+
+/* Additional CSS styles */
+
+/* Make social media icons round */
+.social-icons img {
+    border-radius: 50%;
 }
 
 /* Styling for the slideshow */
@@ -257,7 +352,7 @@ button {
     right: 10px;
 }
 
-/* Default styles for map */
+/* Default styles */
 .map iframe {
     width: 100%; /* Set the width to 100% by default */
     height: 450px; /* Set the default height */
@@ -268,31 +363,100 @@ button {
     .map iframe {
         height: 300px; /* Reduce the height for smaller screens */
     }
+
+    .product {
+        width: 100%; /* Make products full width on small screens */
+        margin-bottom: 20px;
+    }
+
+    .contact-info {
+        margin-left: 0;
+        justify-content: center;
+    }
+
+    .map {
+        margin-right: 0;
+    }
+
+    header .container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav ul {
+        width: 100%;
+        text-align: center;
+    }
+
+    nav ul li {
+        display: block;
+        margin: 10px 0;
+    }
+    
+    .director {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    .director img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .director h3 {
+        font-size: 18px;
+    }
+
+    .director p {
+        font-size: 14px;
+    }
+
+    .contact-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
 }
 
-/* Director image styles */
-.director img {
-    border-radius: 50%; /* Make the director images round */
-    width: 150px;
-    height: 150px;
-    object-fit: cover; /* Ensure the image fills the container */
-    margin-bottom: 20px;
+@media (max-width: 576px) {
+    header .container {
+        flex-direction: column;
+    }
+
+    .product {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .contact-info {
+        margin-left: 0;
+    }
+
+    .map {
+        margin-right: 0;
+    }
+
+    .director img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .social-icons {
+        top: 85%; /* Adjust vertical position for smaller screens */
+        right: 10px; /* Adjust horizontal position for smaller screens */
+    }
+
+    .social-icons a img {
+        width: 40px;
+        height: 40px;
+    }
 }
 
-/* Social icons styles */
-.social-icons a {
-    display: inline-block;
-    margin-right: 10px; /* Adjust spacing between icons */
-    text-decoration: none;
-}
+@media (min-width: 992px) {
+    .contact-info {
+        margin-left: 150px;
+    }
 
-.social-icons a img {
-    width: 50px; /* Adjust width and height of the icons */
-    height: 50px;
-    border-radius: 50%; /* Make the icons round */
-    overflow: hidden; /* Ensure the icon stays within the rounded shape */
-}
-
-.social-icons a:last-child {
-    margin-right: 0; /* Remove margin from the last icon */
+    .map {
+        margin-right: 20px;
+    }
 }
