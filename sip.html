@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        body {
+         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
@@ -312,7 +312,86 @@
         .men-item:last-child {
             border-bottom: none;
         }
+        .content{
+            padding: 20px 20px;
+            align-items: center;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            background: #000000;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            width: 350px;
+            text-align: center;
+            color: #ffffff;
+            align-items:center;
+        }
 
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin: 10px 0 5px;
+        }
+
+        input[type="number"], input[type="range"] {
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 15px;
+            border: 1px solid #555;
+            border-radius: 4px;
+            width: 90%;
+            background: #222;
+            color: #fff;
+        }
+
+        .slider {
+            width: 90%;
+        }
+
+        button {
+            width: 90%;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        #result {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .chart-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        canvas {
+            max-width: 300px;
+        }
     </style>
 </head>
 <body>
@@ -359,163 +438,119 @@
                     </div>
                 </div>
     </div>
+    
     <div class="fav">
         
 
     </div>
-    <div class="col3">
-        WHAT'S ON US
-        
+    <div class="content">
+        <div class="container">
+            <h1>SIP Calculator</h1>
+            <p>Systematic Investment Plan (SIP) is a disciplined way of investing a fixed amount regularly in mutual funds. This calculator helps you estimate the future value of your investments based on monthly contributions, the annual rate of interest, and the investment period.</p>
+            <form id="sip-form">
+                <label for="principal">Monthly Investment Amount (in ₹):</label>
+                <input type="range" id="principal" min="1000" max="100000" step="0.01" value="5000" class="slider" oninput="updatePrincipalValue(this.value)">
+                <input type="number" id="principal-value" value="5000" min="1000" max="100000" step="0.01" oninput="syncSlider('principal', this.value)" />
+    
+                <label for="rate">Annual Rate of Interest (in %):</label>
+                <input type="range" id="rate" min="1" max="20" step="0.1" value="8" class="slider" oninput="updateRateValue(this.value)">
+                <input type="number" id="rate-value" value="8" min="1" max="20" step="0.1" oninput="syncSlider('rate', this.value)" />
+    
+                <label for="years">Investment Period (in years):</label>
+                <input type="range" id="years" min="1" max="30" step="0.1" value="10" class="slider" oninput="updateYearsValue(this.value)">
+                <input type="number" id="years-value" value="10" min="1" max="30" step="0.1" oninput="syncSlider('years', this.value)" />
+    
+                <button type="button" onclick="calculateSIP()">Calculate</button>
+            </form>
+            <div id="result">
+                <p id="investment-value">Total Investment: ₹0.00</p>
+                <p id="return-value">Future Value: ₹0.00</p>
+                <p id="total-returns">Total Returns: ₹0.00</p>
+            </div>
+            <div class="chart-container">
+                <canvas id="pie-chart"></canvas>
+            </div>
+        </div>
     </div>
-    <div style="padding: 10px;"></div>
-    <div class="top-article">
-        
-        
-            <img src="home.png" alt="Article Image" width="80%" height="500px" align:center;>
-            
-       
+    
+    <!-- Include Chart.js from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        function updatePrincipalValue(value) {
+            document.getElementById('principal-value').value = parseFloat(value).toFixed(2);
+        }
 
-    </div>
-    <div style="padding: 20px;"></div>
-    <div class="col4">
-        READ NOW
+        function updateRateValue(value) {
+            document.getElementById('rate-value').value = parseFloat(value).toFixed(2);
+        }
 
-    </div>
+        function updateYearsValue(value) {
+            document.getElementById('years-value').value = parseFloat(value).toFixed(2);
+        }
 
-    <!-- Articles Section -->
-    <div class="articles-section">
-       
+        function syncSlider(sliderId, value) {
+            document.getElementById(sliderId).value = parseFloat(value).toFixed(2);
+        }
 
-        <!-- Row 1 -->
-        <div class="articles-row">
-            <div class="article">
-                <a href="t4.html">
-                    <img src="t4.png" alt="Article Image" class="hover-image">
-                </a>
-                <a href="t4.html" class="hover-underline"><b><p>OpenAI Backs California AI Bill Requiring 'Watermarking' of Synthetic Content</p></b></a>
-            </div>
-            <div class="article">
-                <a href="b4.html">
-                    <img src="b4.png" alt="Article Image" class="hover-image">
-                </a>
-                <a href="b4.html" class="hover-underline"><b><p>BPCL launches aerial seeding through drones to reforest hills in Bihar</p></b></a>
-            </div>
-        
-            <div class="article">
-                <a href="b1.html">
-                    <img src="zomato.png" alt="Article Image" class="hover-image">
-                </a>
-                <a href="b1.html" class="hover-underline"><b><p>Zomato and Paytm Forge Strategic Partnership to Revolutionize Food Delivery and Digital Payments</p></b></a>
-            </div>
-            <div class="article">
-                <a href="e3.html">
-                    <img src="e3.png" alt="Article Image" class="hover-image">
-                </a>
-                <a href="e3.html" class="hover-underline"><b><p>India trade ministry proposes anti-dumping duty on Chinese aluminium foil imports</p></b></a>
-            </div>
-        </div>
-       
+        function calculateSIP() {
+            // Get user inputs
+            const principal = parseFloat(document.getElementById('principal-value').value);
+            const rateOfInterest = parseFloat(document.getElementById('rate-value').value);
+            const years = parseFloat(document.getElementById('years-value').value);
 
-        <!-- Row 2 -->
-        <div class="col5">
-            BUSINESS WORLD
+            // Validate inputs
+            if (isNaN(principal) || isNaN(rateOfInterest) || isNaN(years)) {
+                alert('Please enter valid values.');
+                return;
+            }
 
-        </div>
-        <div class="articles-row">
-            <div class="article">
-                <a href="b1.html">
-                    <img src="zomato.png" alt="Article Image" class="hover-image">
-                </a>
-                <a href="b1.html" class="hover-underline"><b><p>Zomato and Paytm Forge Strategic Partnership to Revolutionize Food Delivery and Digital Payments</p></b></a>
-            </div>
-            <div class="article">
-                <a href="b2.html">
-                    <img src="b2.png" alt="Article Image" class="hover-image">
-                </a>
-                <a href="b2.html" class="hover-underline"><b><p>Can Titan’s ₹1 lakh crore dream sparkle amid challenges?</p></b></a>
-            </div>
-            <div class="article">
-                <a href="b3.html">
-                    <img src="b3.png" alt="Article Image" class="hover-image">
-                </a>
-                <a href="b3.html" class="hover-underline"><b><p>Hyundai opens booking for new SUV Alcazar at token of Rs 25,000; Here are key features and other details</p></b></a>
-            </div>
-            <div class="article">
-                <a href="b4.html">
-                    <img src="b4.png" alt="Article Image" class="hover-image">
-                </a>
-                <a href="b4.html" class="hover-underline"><b><p>BPCL launches aerial seeding through drones to reforest hills in Bihar</p></b></a>
-            </div>
-        </div>
-        
-        <!-- Row 3 -->
-        <div class="col6">
-        ECONOMY
+            // Calculate future value
+            const months = years * 12;
+            const monthlyRate = (rateOfInterest / 100) / 12;
+            const futureValue = principal * (((1 + monthlyRate) ** months - 1) / monthlyRate) * (1 + monthlyRate);
+            const totalInvestment = principal * months;
+            const totalReturns = futureValue - totalInvestment;
 
-        </div>
-        <div class="articles-row">
-            <div class="article">
-                <a href="e1.html">
-                    <img src="e1.png" alt="Article Image" class="hover-image">
-                </a>
-                <a href="e1.html" class="hover-underline"><b><p>India's forex reserves hit all-time high of $681.69 billion, up $7.02 billion as of August 23</p></b></a>
-            </div>
-            <div class="article">
-                <a href="e2.html">
-                    <img src="e2.png" alt="Article Image" class="hover-image">
-                </a>
-                <a href="e2.html" class="hover-underline"><b><p>India Q1 FY25 GDP data: Will reviving rural growth beat effects of election-time capex lag?
-                </p></b></a>
-            </div>
-            <div class="article">
-                <a href="e3.html">
-                    <img src="e3.png" alt="Article Image" class="hover-image">
-                </a>
-                <a href="e3.html" class="hover-underline"><b><p>India trade ministry proposes anti-dumping duty on Chinese aluminium foil imports</p></b></a>
-            </div>
-            <div class="article">
-                <a href="e4.html">
-                    <img src="e4.png" alt="Article Image" class="hover-image">
-                </a>
-                <a href="e4.html" class="hover-underline"><b><p>Government receives over ₹10 lakh crore in revenue by July 2024</p></b></a>
-            </div>
-           
-        </div>
+            // Update result text
+            document.getElementById('investment-value').textContent = `Total Investment: ₹${totalInvestment.toFixed(2)}`;
+            document.getElementById('return-value').textContent = `Future Value: ₹${futureValue.toFixed(2)}`;
+            document.getElementById('total-returns').textContent = `Total Returns: ₹${totalReturns.toFixed(2)}`;
 
-        <!-- Row 4 -->
-        <div class="col7">
-            TECH
+            // Draw the pie chart
+            drawPieChart(totalInvestment, totalReturns);
+        }
 
-        </div>
-        <div class="articles-row">
-            <div class="article">
-                <a href="t1.html">
-                    <img src="t1.png" alt="Article Image" class="hover-image">
-                </a>
-                <a href="t1.html" class="hover-underline"><b><p>Android 15 Update Release Timeline Confirmed via Google's Android 14 Downgrade OTA Update</p></b></a>
-            </div>
-            <div class="article">
-                <a href="t2.html">
-                    <img src="t2.png" alt="Article Image" class="hover-image">
-                </a>
-                <a href="t2.html" class="hover-underline"><b><p>SpaceX Polaris Crewed Mission Delayed After Leak in Ground Equipment</p></b></a>
-            </div>
-            <div class="article">
-                <a href="t3.html">
-                    <img src="t3.png" alt="Article Image" class="hover-image">
-                </a>
-                <a href="t3.html" class="hover-underline"><b><p>Telegram-Linked Toncoin Token Sheds $2.7 Billion After CEO Pavel Durov Detained</p></b></a>
-            </div>
-            <div class="article">
-                <a href="t4.html">
-                    <img src="t4.png" alt="Article Image" class="hover-image">
-                </a>
-                <a href="t4.html" class="hover-underline"><b><p>OpenAI Backs California AI Bill Requiring 'Watermarking' of Synthetic Content</p></b></a>
-            </div>
-           
-        </div>
-
-    </div>
+        function drawPieChart(investment, returns) {
+            const ctx = document.getElementById('pie-chart').getContext('2d');
+            const chart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Total Investment', 'Total Returns'],
+                    datasets: [{
+                        data: [investment, returns],
+                        backgroundColor: ['#007bff', '#28a745'],
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(tooltipItem) {
+                                    const label = tooltipItem.label || '';
+                                    const value = tooltipItem.raw;
+                                    return `${label}: ₹${value.toFixed(2)}`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    </script>
     <div class="foot1">
         <div class="foot11">
             <div style="font-family: cursive;font-size: 25px; margin-top: 20px;">WALLCLUBS</div>

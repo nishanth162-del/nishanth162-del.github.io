@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        body {
+         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
@@ -312,7 +312,48 @@
         .men-item:last-child {
             border-bottom: none;
         }
-
+        .content{
+            padding: 20px 20px;
+            align-items: center;
+            display: flex;
+            justify-content: center;
+            
+        }
+        .container{
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #222;
+            color: #ffffff;
+        }
+        .input-group {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px 0;
+        }
+        .input-group label {
+            margin-right: 10px;
+        }
+        input[type="range"], input[type="number"] {
+            margin: 0 10px;
+        }
+        .slider-label {
+            font-size: 1.2em;
+        }
+        canvas {
+            width: 300px !important; /* Set the width */
+            height: 300px !important; /* Set the height */
+            display: flex;
+            justify-content: center;
+            margin-left: 250px;
+        }
+        .result {
+            font-size: 1.1em;
+            margin-top: 20px;
+        }
+        
     </style>
 </head>
 <body>
@@ -359,162 +400,185 @@
                     </div>
                 </div>
     </div>
+   
     <div class="fav">
         
 
     </div>
-    <div class="col3">
-        WHAT'S ON US
-        
-    </div>
-    <div style="padding: 10px;"></div>
-    <div class="top-article">
-        
-        
-            <img src="home.png" alt="Article Image" width="80%" height="500px" align:center;>
+    <div class="content">
+        <div class="container">
+            <h1>SWP Calculator</h1>
+            <p class="description">
+                This Systematic Withdrawal Plan (SWP) calculator helps you visualize how your investments and withdrawals impact your portfolio over time. Input your total investment amount, annual interest rate, number of years, and adjust the monthly withdrawal slider to see how the remaining balance and withdrawal amounts are distributed.
+            </p>
             
-       
-
-    </div>
-    <div style="padding: 20px;"></div>
-    <div class="col4">
-        READ NOW
-
-    </div>
-
-    <!-- Articles Section -->
-    <div class="articles-section">
-       
-
-        <!-- Row 1 -->
-        <div class="articles-row">
-            <div class="article">
-                <a href="t4.html">
-                    <img src="t4.png" alt="Article Image" class="hover-image">
-                </a>
-                <a href="t4.html" class="hover-underline"><b><p>OpenAI Backs California AI Bill Requiring 'Watermarking' of Synthetic Content</p></b></a>
+            <div class="input-group">
+                <label for="investment">Total Investment (₹): </label>
+                <input type="number" id="investment" value="100000" min="0" step="1000" style="width: 120px;">
+                <input type="range" id="investment-slider" value="100000" min="0" max="1000000" step="10000">
             </div>
-            <div class="article">
-                <a href="b4.html">
-                    <img src="b4.png" alt="Article Image" class="hover-image">
-                </a>
-                <a href="b4.html" class="hover-underline"><b><p>BPCL launches aerial seeding through drones to reforest hills in Bihar</p></b></a>
+            
+            <div class="input-group">
+                <label for="interest">Annual Interest Rate (%): </label>
+                <input type="number" id="interest-input" value="7" min="0" max="20" step="0.1" style="width: 100px;">
+                <input type="range" id="interest" value="7" min="0" max="20" step="0.1">
+                <span class="slider-label" id="interest-value">7%</span>
             </div>
-        
-            <div class="article">
-                <a href="b1.html">
-                    <img src="zomato.png" alt="Article Image" class="hover-image">
-                </a>
-                <a href="b1.html" class="hover-underline"><b><p>Zomato and Paytm Forge Strategic Partnership to Revolutionize Food Delivery and Digital Payments</p></b></a>
+            
+            <div class="input-group">
+                <label for="years">Number of Years: </label>
+                <input type="number" id="years-input" value="10" min="1" max="30" step="1" style="width: 100px;">
+                <input type="range" id="years" value="10" min="1" max="30" step="1">
+                <span class="slider-label" id="years-value">10</span>
             </div>
-            <div class="article">
-                <a href="e3.html">
-                    <img src="e3.png" alt="Article Image" class="hover-image">
-                </a>
-                <a href="e3.html" class="hover-underline"><b><p>India trade ministry proposes anti-dumping duty on Chinese aluminium foil imports</p></b></a>
+            
+            <div class="input-group">
+                <label for="withdrawal">Monthly Withdrawal (₹): </label>
+                <input type="number" id="withdrawal-input" value="10000" min="0" max="100000" step="500" style="width: 100px;">
+                <input type="range" id="withdrawal" value="10000" min="0" max="100000" step="500">
+                <span class="slider-label" id="withdrawal-value">10000</span>
             </div>
+            <div class="result">
+                <p>Final Remaining Investment: <span id="final-remaining">₹0</span></p>
+                <p>Total Withdrawn: <span id="total-withdrawn">₹0</span></p>
+            </div>
+            <canvas id="pieChart"></canvas>
         </div>
-       
-
-        <!-- Row 2 -->
-        <div class="col5">
-            BUSINESS WORLD
-
-        </div>
-        <div class="articles-row">
-            <div class="article">
-                <a href="b1.html">
-                    <img src="zomato.png" alt="Article Image" class="hover-image">
-                </a>
-                <a href="b1.html" class="hover-underline"><b><p>Zomato and Paytm Forge Strategic Partnership to Revolutionize Food Delivery and Digital Payments</p></b></a>
-            </div>
-            <div class="article">
-                <a href="b2.html">
-                    <img src="b2.png" alt="Article Image" class="hover-image">
-                </a>
-                <a href="b2.html" class="hover-underline"><b><p>Can Titan’s ₹1 lakh crore dream sparkle amid challenges?</p></b></a>
-            </div>
-            <div class="article">
-                <a href="b3.html">
-                    <img src="b3.png" alt="Article Image" class="hover-image">
-                </a>
-                <a href="b3.html" class="hover-underline"><b><p>Hyundai opens booking for new SUV Alcazar at token of Rs 25,000; Here are key features and other details</p></b></a>
-            </div>
-            <div class="article">
-                <a href="b4.html">
-                    <img src="b4.png" alt="Article Image" class="hover-image">
-                </a>
-                <a href="b4.html" class="hover-underline"><b><p>BPCL launches aerial seeding through drones to reforest hills in Bihar</p></b></a>
-            </div>
-        </div>
-        
-        <!-- Row 3 -->
-        <div class="col6">
-        ECONOMY
-
-        </div>
-        <div class="articles-row">
-            <div class="article">
-                <a href="e1.html">
-                    <img src="e1.png" alt="Article Image" class="hover-image">
-                </a>
-                <a href="e1.html" class="hover-underline"><b><p>India's forex reserves hit all-time high of $681.69 billion, up $7.02 billion as of August 23</p></b></a>
-            </div>
-            <div class="article">
-                <a href="e2.html">
-                    <img src="e2.png" alt="Article Image" class="hover-image">
-                </a>
-                <a href="e2.html" class="hover-underline"><b><p>India Q1 FY25 GDP data: Will reviving rural growth beat effects of election-time capex lag?
-                </p></b></a>
-            </div>
-            <div class="article">
-                <a href="e3.html">
-                    <img src="e3.png" alt="Article Image" class="hover-image">
-                </a>
-                <a href="e3.html" class="hover-underline"><b><p>India trade ministry proposes anti-dumping duty on Chinese aluminium foil imports</p></b></a>
-            </div>
-            <div class="article">
-                <a href="e4.html">
-                    <img src="e4.png" alt="Article Image" class="hover-image">
-                </a>
-                <a href="e4.html" class="hover-underline"><b><p>Government receives over ₹10 lakh crore in revenue by July 2024</p></b></a>
-            </div>
-           
-        </div>
-
-        <!-- Row 4 -->
-        <div class="col7">
-            TECH
-
-        </div>
-        <div class="articles-row">
-            <div class="article">
-                <a href="t1.html">
-                    <img src="t1.png" alt="Article Image" class="hover-image">
-                </a>
-                <a href="t1.html" class="hover-underline"><b><p>Android 15 Update Release Timeline Confirmed via Google's Android 14 Downgrade OTA Update</p></b></a>
-            </div>
-            <div class="article">
-                <a href="t2.html">
-                    <img src="t2.png" alt="Article Image" class="hover-image">
-                </a>
-                <a href="t2.html" class="hover-underline"><b><p>SpaceX Polaris Crewed Mission Delayed After Leak in Ground Equipment</p></b></a>
-            </div>
-            <div class="article">
-                <a href="t3.html">
-                    <img src="t3.png" alt="Article Image" class="hover-image">
-                </a>
-                <a href="t3.html" class="hover-underline"><b><p>Telegram-Linked Toncoin Token Sheds $2.7 Billion After CEO Pavel Durov Detained</p></b></a>
-            </div>
-            <div class="article">
-                <a href="t4.html">
-                    <img src="t4.png" alt="Article Image" class="hover-image">
-                </a>
-                <a href="t4.html" class="hover-underline"><b><p>OpenAI Backs California AI Bill Requiring 'Watermarking' of Synthetic Content</p></b></a>
-            </div>
-           
-        </div>
-
+    
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+            // Get elements
+            const investmentInput = document.getElementById('investment');
+            const investmentSlider = document.getElementById('investment-slider');
+            const interestInput = document.getElementById('interest');
+            const interestInputNumber = document.getElementById('interest-input');
+            const yearsInput = document.getElementById('years');
+            const yearsInputNumber = document.getElementById('years-input');
+            const withdrawalInput = document.getElementById('withdrawal');
+            const withdrawalInputNumber = document.getElementById('withdrawal-input');
+            const interestValueLabel = document.getElementById('interest-value');
+            const yearsValueLabel = document.getElementById('years-value');
+            const withdrawalValueLabel = document.getElementById('withdrawal-value');
+            const finalRemainingLabel = document.getElementById('final-remaining');
+            const totalWithdrawnLabel = document.getElementById('total-withdrawn');
+            const pieChartCanvas = document.getElementById('pieChart').getContext('2d');
+    
+            let chart = null;
+    
+            // Update the chart based on inputs
+            function updateChart() {
+                const investment = parseFloat(investmentInput.value);
+                const annualInterestRate = parseFloat(interestInput.value) / 100;
+                const years = parseInt(yearsInput.value);
+                const monthlyWithdrawal = parseFloat(withdrawalInput.value);
+                const months = years * 12;
+    
+                // Calculate future value of the investment after interest
+                let futureValue = investment * Math.pow(1 + annualInterestRate / 12, months);
+                
+                // Calculate total amount withdrawn
+                let totalWithdrawn = monthlyWithdrawal * months;
+                
+                // Calculate final remaining balance
+                let remaining = futureValue - totalWithdrawn;
+                
+                // Update final values
+                finalRemainingLabel.textContent = `₹${Math.max(remaining, 0).toFixed(2)}`;
+                totalWithdrawnLabel.textContent = `₹${totalWithdrawn.toFixed(2)}`;
+    
+                const data = {
+                    labels: ['Remaining Investment', 'Total Withdrawn'],
+                    datasets: [{
+                        data: [Math.max(remaining, 0), totalWithdrawn],
+                        backgroundColor: ['#4CAF50', '#F44336']
+                    }]
+                };
+    
+                if (chart) {
+                    chart.data = data;
+                    chart.update();
+                } else {
+                    chart = new Chart(pieChartCanvas, {
+                        type: 'doughnut',
+                        data: data,
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                legend: {
+                                    position: 'top',
+                                },
+                                tooltip: {
+                                    callbacks: {
+                                        label: function(context) {
+                                            let label = context.label || '';
+                                            if (label) {
+                                                label += ': ';
+                                            }
+                                            if (context.parsed !== null) {
+                                                label += `₹${context.parsed}`;
+                                            }
+                                            return label;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+            }
+    
+            // Synchronize slider and input fields
+            function syncInputs() {
+                investmentInput.addEventListener('input', function() {
+                    investmentSlider.value = investmentInput.value;
+                    updateChart();
+                });
+    
+                investmentSlider.addEventListener('input', function() {
+                    investmentInput.value = investmentSlider.value;
+                    updateChart();
+                });
+    
+                interestInput.addEventListener('input', function() {
+                    interestInputNumber.value = interestInput.value;
+                    interestValueLabel.textContent = `${interestInput.value}%`;
+                    updateChart();
+                });
+    
+                interestInputNumber.addEventListener('input', function() {
+                    interestInput.value = interestInputNumber.value;
+                    interestValueLabel.textContent = `${interestInputNumber.value}%`;
+                    updateChart();
+                });
+    
+                yearsInput.addEventListener('input', function() {
+                    yearsInputNumber.value = yearsInput.value;
+                    yearsValueLabel.textContent = yearsInput.value;
+                    updateChart();
+                });
+    
+                yearsInputNumber.addEventListener('input', function() {
+                    yearsInput.value = yearsInputNumber.value;
+                    yearsValueLabel.textContent = yearsInputNumber.value;
+                    updateChart();
+                });
+    
+                withdrawalInput.addEventListener('input', function() {
+                    withdrawalInputNumber.value = withdrawalInput.value;
+                    withdrawalValueLabel.textContent = withdrawalInput.value;
+                    updateChart();
+                });
+    
+                withdrawalInputNumber.addEventListener('input', function() {
+                    withdrawalInput.value = withdrawalInputNumber.value;
+                    withdrawalValueLabel.textContent = withdrawalInput.value;
+                    updateChart();
+                });
+            }
+    
+            syncInputs();
+            updateChart(); // Initial chart render
+        </script>
     </div>
     <div class="foot1">
         <div class="foot11">

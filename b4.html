@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>WallClubs</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .header {
+            background-color: #ffffff;
+            color: solid white;
+            padding: 15px;
+            text-align: left;
+        }
+        .company-name{
+            float: left;
+            margin-top:10px;
+            margin-left: 30px;
+            font-size: 40px;
+            font-family: cursive;
+            text-decoration: none;
+            color: #000;
+            
+        }
+        .header .subscribe {
+            float: right;
+            margin-top: 30px;
+            margin-right: 20px;
+        }
+        .header .subscrib {
+            float: right;
+            margin-top: 30px;
+            margin-right: 20px;
+        }
+        .logo{
+            text-align: center;
+        }
+        .fav {
+            background-color: #ffffff;
+            padding: 40px;
+            
+            text-align: center;
+
+        }
+        .col3 {
+            background-color: #ffffff;
+            border-top:2px solid black;
+            border-bottom:2px solid black;
+            padding: 10px;
+            text-align: left;
+            margin-left:10px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        .col4{
+            background-color: #ffffff;
+            border-top:2px solid black;
+            border-bottom:2px solid black;
+            padding: 10px;
+            text-align: left;
+            margin-left:10px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        .col5{
+            background-color: #ffffff;
+            border-top:2px solid black;
+            border-bottom:2px solid black;
+            padding: 10px;
+            text-align: left;
+            margin-left:10px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        .col6{
+            background-color: #ffffff;
+            border-top:2px solid black;
+            border-bottom:2px solid black;
+            padding: 10px;
+            text-align: left;
+            margin-left:10px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        .col7{
+            background-color: #ffffff;
+            border-top:2px solid black;
+            border-bottom:2px solid black;
+            padding: 10px;
+            text-align: left;
+            margin-left:10px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        .foot1{
+            background-color: #0b0808;
+            display: flex;
+            padding: 50px;
+            text-decoration: none;   
+        }
+        .foot11{
+            flex: 1;
+            font-family: cursive;
+            color: #ffffff;
+            margin-top: -50px;
+
+        }
+        .foot12{
+            background-color: #0a0a0a;
+            display: block;
+            color: hsl(0, 0%, 96%);
+            flex: 1;
+            text-decoration: none;
+            font-size: 15px;
+            margin-top: -30px;
+            
+        } 
+        .foot13{
+            display: flex;
+            flex: 1;
+            color: #ffffff;
+            gap: 15px;
+            text-align: top;
+            
+        }
+        .foot2{
+            background-color: #231e1e;
+            border-top:2px solid #f5f5f5;
+            color: #f5f5f5;
+            text-decoration: none;
+            padding: 20px;
+            text-align: left;
+        }
+        .top-article{
+            display: flex;
+            justify-content: center;
+        }
+        
+        .articles-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            margin-top: 20px;
+            margin-left: 10px;
+            margin-right: 10px;
+            height: max-content;
+        }
+        .article {
+            background-color: #fff;
+            padding: 15px;
+            width: 22%;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            height:250px;
+        }
+        .article img {
+            width: 100%;
+            height:70%;
+        }
+        .article p {
+            font-size: 14px;
+            color: #555;
+        }
+        .social-icon {
+            text-decoration: none;
+            color: #000; /* Default icon color */
+            font-size: 24px; /* Size of the icons */
+            transition: color 0.3s;
+        }
+
+        .social-icon:hover {
+            color: #007bff; /* Color on hover */
+        }
+
+        .facebook { color: #3b5998; }
+        .twitter { color: #1da1f2; }
+        .instagram { color: #e4405f; }
+        .linkedin { color: #0077b5; }
+        
+        .hamburger-menu {
+            position: absolute; /* Allows custom positioning */
+            top: 96px; /* Adjust to position from the top */
+            left: 28px; /* Adjust to position from the right */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            width: 10px;
+        }
+
+        .hamburger-menu div {
+            width: 30px;
+            height: 3px;
+            background-color: #ffffff;
+            margin: 5px 0;
+            transition: background-color 0.3s;
+        }
+
+        .menu {
+            display: none;
+            position: absolute;
+            top:120px; /* Position the menu below the icon */
+            left:10px; /* Align the menu with the icon */
+            background-color: #080808;
+            border: 0.5px solid #ddd;
+            
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+            width: 300px;
+        }
+
+        .hamburger-menu:hover + .menu,
+        .menu:hover {
+            display: block;
+        }
+
+        .menu-item {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            color: #ffffff;
+            text-decoration: none;
+            display: block;
+            cursor: pointer;
+        }
+
+        .menu-item:hover {
+            background-color: #867f7f;
+        }
+
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+        .hover-image {
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+
+        .hover-image:hover {
+            transform: scale(1.1); /* Zoom effect */
+            filter: brightness(80%); /* Darken effect */
+        }
+        .hover-underline {
+            text-decoration: none; /* Remove the underline by default */
+            transition: text-decoration 0.3s ease; /* Smooth transition for the underline effect */
+        }
+
+        .hover-underline:hover {
+            text-decoration: underline; /* Add the underline on hover */
+        }
+        .nav{
+            text-decoration: none;
+            color: #ffffff;
+        }
+        .men {
+            background-color: #000000;
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+            border-top: 1px solid rgb(137, 129, 129);
+            border-bottom: 1px solid rgb(137, 129, 129);
+            width: 100%;
+            text-decoration: none;
+        }
+
+        .men-item {
+            position: relative;
+            color: white;
+            padding: 10px;
+            text-decoration: none;
+            cursor: pointer;
+            background-color: #000000;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .men-item:hover {
+            background-color: #383030;
+        }
+
+        .submen {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #000000;
+            width: 160px;
+            z-index: 1;
+            text-decoration: none;
+        }
+
+        .submen-item {
+            padding:10px 5px;
+            color: white;
+            cursor: pointer;
+            border-bottom: 1px solid white;
+            text-decoration: none;
+        }
+
+        .submen-item:hover {
+            background-color: #555;
+        }
+
+        .men-item:hover .submen {
+            display: block;
+        }
+        .men-item:last-child {
+            border-bottom: none;
+        }
+        .mav {
+            background-color: #ffffff;
+            padding: 20px;
+            border-top:2px solid black;
+            border-bottom:2px solid black;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        .lav {
+            background-color: #ffffff;
+            padding: 20px;      
+            text-align: center;
+        }
+        .kav {
+            background-color: #ffffff;
+            padding: 100px;     
+            text-align:justify;
+        }
+
+
+    </style>
+
+</head>
+
+<body>
+
+
+
+    <!-- Header Section -->
+
+    <div class="header">
+
+        <div class="company-name">WALLCLUBS</div>
+
+        <div class="subscribe"><a href="#" style="color: #0c0808; text-decoration: none;">CONTACT US</a></div>
+
+        <div class="subscrib"><a href="#" style="color: #0c0808; text-decoration: none;">ABOUT US</a></div>
+
+    </div>
+
+
+
+    <!-- Navigation Section -->
+
+    <div class="nav">
+
+        <a href="#">MARKETS TODAY</a>
+
+        <a href="#">BUSINESS WORLD</a>
+
+        <a href="#">CULTURE&LIFESTYLE</a>
+
+        <a href="#">TECH</a>
+
+    </div>
+
+    <div class="fav">
+
+        
+
+
+
+    </div>
+
+    <div class="mav">
+
+        BPCL launches aerial seeding through drones to reforest hills in Bihar
+
+
+    </div>
+
+    <div class="lav">
+
+    
+
+           <img src="b4.png" width="100%" height="500px">
+
+    </div>
+
+
+
+    <div class="kav">
+
+        <p>In a groundbreaking move towards environmental sustainability, Bharat Petroleum Corporation Limited (BPCL) has embarked on an innovative reforestation initiative in Bihar, India. The company has introduced aerial seeding using drones to aid in the restoration of the state's deforested and degraded hill areas. This advanced technology is set to transform traditional reforestation practices, which often involve labor-intensive methods, by deploying drones to disperse seeds across large, inaccessible terrains. The initiative is part of BPCL's broader commitment to environmental stewardship and aligns with its goals of reducing carbon footprints and enhancing biodiversity.</p>
+<p>The aerial seeding project will initially focus on the hills of Bihar, an area that has faced significant deforestation due to logging, agriculture, and other human activities. By utilizing drones, BPCL aims to cover extensive areas more efficiently than conventional methods. The drones are equipped with specialized seed pods that are designed to be dropped from the air, allowing for the even distribution of native tree species. This method not only speeds up the reforestation process but also ensures that hard-to-reach locations are reforested, which traditional planting methods might miss. The choice of native species is crucial for maintaining ecological balance and supporting local wildlife.</p>
+ <p>The impact of this initiative is expected to be substantial, both environmentally and socially. Reforestation will contribute to restoring biodiversity, improving soil health, and combating climate change by absorbing carbon dioxide. Additionally, the project is anticipated to generate local employment opportunities, as BPCL plans to involve local communities in monitoring and managing the newly planted areas. This integration of cutting-edge technology with community engagement reflects a holistic approach to environmental conservation. BPCL's aerial seeding project not only exemplifies corporate responsibility but also sets a precedent for future reforestation efforts in India and beyond.</p>   
+
+</div>
+<div class="foot1">
+    <div class="foot11">
+        <div style="font-family: cursive;font-size: 25px; margin-top: 20px;">WALLCLUBS</div>
+        <p>Your Financial Success Starts Here<br>Wall Clubs, Where Vision Becomes Reality.</p>
+    </div>
+    <div class="foot12">
+        <a href="business.html" class="hover-underline" style="color: #f5f5f5;">BUSINESS WORLD</a><br>
+        <a href="economy.html" class="hover-underline" style="color: #f5f5f5;">ECONOMY</a><br>
+        <a href="tech.html" class="hover-underline" style="color: #f5f5f5;">TECH</a><br>
+        <a href="trends.html" class="hover-underline" style="color: #f5f5f5;">TRENDS</a>
+    </div>
+    <div class="foot13">
+        <div style="margin-top: -20px;"><p style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;font-size: 22px;">follow us on:</h3></div>
+        <div style="text-align: top;">
+        <a href="https://www.facebook.com/yourprofile" target="_blank" class="social-icon facebook" aria-label="Facebook">
+            <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://www.twitter.com/yourprofile" target="_blank" class="social-icon twitter" aria-label="Twitter">
+            <i class="fab fa-twitter"></i>
+        </a>
+        <a href="https://www.instagram.com/yourprofile" target="_blank" class="social-icon instagram" aria-label="Instagram">
+            <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/yourprofile" target="_blank" class="social-icon linkedin" aria-label="LinkedIn">
+            <i class="fab fa-linkedin-in"></i>
+        </a>
+        </div>
+    </div>
+
+
+</div>
+<div class="foot2">
+   <a href="terms.html" class="hover-underline" style="color: #ffffff;"> TERMS OF SEVICE |</a>
+   <a href="contact.html" class="hover-underline"style="color: #ffffff;">  CONTACT  |</a>
+   <a href="about.html" class="hover-underline"style="color: #ffffff;">ABOUT  |</a>
+
+</div>
+
+</body>
+</html>
