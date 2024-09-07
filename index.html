@@ -322,6 +322,134 @@
         .men-item:last-child {
             border-bottom: none;
         }
+       .scroll-container {
+            overflow: hidden; /* Hide any overflow content */
+            width: 100%; /* Full width of the container */
+            background: black; /* Black background for the container */
+            border: 1px solid #333; /* Darker border for visibility */
+            box-sizing: border-box; /* Include padding and border in width */
+            padding: 10px; /* Padding for aesthetics */
+        }
+
+        .scroll-text-wrapper {
+            display: flex; /* Arrange text in a row */
+            animation: scroll-left 30s linear infinite; /* Apply scrolling animation */
+            white-space: nowrap; /* Prevent text from wrapping */
+        }
+
+        .scroll-text {
+            display: flex; /* Keep items in a row */
+            margin-left: 20%; /* Add 20% space at the start of the first line */
+        }
+
+        .scroll-text:first-of-type {
+            margin-left: 20%; /* Apply margin-left only to the first instance */
+        }
+
+        .scroll-text:not(:first-of-type) {
+            margin-left: 0; /* Ensure no extra margin for subsequent lines */
+        }
+
+        .data-item {
+            margin-right: 3rem; /* Spacing between items */
+            font-size: 1.2rem; /* Font size */
+            color: #fff; /* Default text color */
+        }
+
+        .change {
+            display: inline-flex;
+            align-items: center;
+            font-size: 1rem;
+            margin-left: 1rem; /* Spacing between value and change indicator */
+        }
+
+        .change .arrow {
+            margin-right: 0.5rem;
+        }
+
+        .change.positive .arrow {
+            color: green;
+        }
+
+        .change.negative .arrow {
+            color: red;
+        }
+
+        .change.positive .percent {
+            color: green;
+        }
+
+        .change.negative .percent {
+            color: red;
+        }
+
+        .data-item.positive {
+            color: green;
+        }
+
+        .data-item.negative {
+            color: red;
+        }
+
+        @keyframes scroll-left {
+            0% {
+                transform: translateX(0); /* Start at the beginning */
+            }
+            100% {
+                transform: translateX(-100%); /* Move left by 100% of the width of the .scroll-text */
+            }
+        }
+        .slider {
+            position: relative;
+            max-width: 100%;
+            margin:20px 20px 20px 20px;
+            overflow: hidden;
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            min-width: 100%;
+            box-sizing: border-box;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 500px;
+            display: block;
+        }
+
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            background-color: rgba(0,0,0,0.5);
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(0,0,0,0.8);
+        }
+
+        .prev {
+            left: 0;
+        }
+
+        .next {
+            right: 0;
+        }
+        .home{
+            align-items: center;
+        }
 
     </style>
 </head>
@@ -370,23 +498,116 @@
                 </div>
     </div>
     <div class="fav">
-        
-
+        <div class="scroll-container">
+            <div class="scroll-text-wrapper" id="data-container">
+                <!-- Content will be injected here by JavaScript -->
+            </div>
+        </div>
     </div>
+    <script>
+        function calculateChange(baseValue, newValue) {
+            const change = newValue - baseValue;
+            const percentageChange = (change / baseValue) * 100;
+            return {
+                change: change.toFixed(2),
+                percentageChange: percentageChange.toFixed(2)
+            };
+        }
+
+        function updateDataItem(name, baseValue, newValue) {
+            const { change, percentageChange } = calculateChange(baseValue, newValue);
+            const changeClass = change >= 0 ? 'positive' : 'negative';
+            const arrow = change >= 0 ? '&#9650;' : '&#9660;'; // Up or Down arrow
+            const colorClass = change >= 0 ? 'positive' : 'negative';
+            return `
+                <span class="data-item ${colorClass}">
+                    <span>${name}: ${newValue.toLocaleString()}</span>
+                    <span class="change ${changeClass}">
+                        <span class="arrow">${arrow}</span>
+                        <span class="points">${Math.abs(change).toLocaleString()}</span>
+                        <span class="percent">(${percentageChange}%)</span>
+                    </span>
+                </span>
+            `;
+        }
+
+        function generateDataContent() {
+            const data = [
+                { name: 'Nifty', baseValue:25145.10, newValue: 24852.15 },
+                { name: 'Sensex', baseValue: 82201.16, newValue: 81183.93 },
+                { name: 'Dow Jones', baseValue: 40755.75, newValue: 40400.30 },
+                { name: 'FTSE', baseValue: 8241.71, newValue: 8181.47 },
+                { name: 'Nikki 225', baseValue: 36657.09, newValue: 36391.47 }
+            ];
+            
+            let content = '';
+            data.forEach(item => {
+                content += updateDataItem(item.name, item.baseValue, item.newValue);
+            });
+            return content;
+        }
+
+        const container = document.getElementById('data-container');
+        const content = generateDataContent();
+        container.innerHTML = `
+            <div class="scroll-text">${content}</div>
+            <div class="scroll-text">${content}
+        `; // Duplicate content for seamless scrolling
+    </script>
     <div class="col3">
         WHAT'S ON US
         
     </div>
-    <div style="padding: 10px;"></div>
-    <div class="top-article">
-        
-        
-            <img src="home.png" alt="Article Image" width="80%" height="500px" align:center;>
-            
-       
-
+    <div class="home">
+        <div class="slider">
+            <div class="slides">
+                <div class="slide">
+                    <img src="h.png" alt="Photo 1">
+                </div>
+                <div class="slide">
+                    <img src="h2.png" alt="Photo 2">
+                </div>
+                <div class="slide">
+                    <img src="h3.png" alt="Photo 3">
+                </div>
+                <div class="slide">
+                    <img src="h4.png" alt="Photo 3">
+                </div>
+                <div class="slide">
+                    <img src="h5.png" alt="Photo 3">
+                </div>
+                <!-- Add more slides here -->
+            </div>
+            <button class="prev" onclick="prevSlide()">&#10094;</button>
+            <button class="next" onclick="nextSlide()">&#10095;</button>
+        </div>
     </div>
-    <div style="padding: 20px;"></div>
+    <script>
+        let slideIndex = 0;
+
+        function showSlides() {
+            const slides = document.querySelectorAll('.slide');
+            slides.forEach((slide, index) => {
+                slide.style.display = (index === slideIndex) ? 'block' : 'none';
+            });
+        }
+
+        function nextSlide() {
+            slideIndex = (slideIndex + 1) % document.querySelectorAll('.slide').length;
+            showSlides();
+        }
+
+        function prevSlide() {
+            slideIndex = (slideIndex - 1 + document.querySelectorAll('.slide').length) % document.querySelectorAll('.slide').length;
+            showSlides();
+        }
+
+        // Initialize the slider
+        showSlides();
+
+        // Auto-slide every 3 seconds
+        setInterval(nextSlide, 3000);
+    </script>
     <div class="col4">
         READ NOW
 
